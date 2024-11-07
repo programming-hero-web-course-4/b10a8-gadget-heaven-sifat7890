@@ -14,11 +14,11 @@ const Banner = () => {
                         <button className="btn btn-white text-[#9538E2] font-bold rounded-full">Shop Now</button>
                     </div>
                     <div className=' absolute border-2 p-3 rounded-xl top-80 border-white'>
-                       
-                       <img
+
+                        <img
                             src={bannerImage}
                             className="rounded-lg shadow-2xl  w-[1000px] h-96" />
-                      
+
                     </div>
                 </div>
             </div>

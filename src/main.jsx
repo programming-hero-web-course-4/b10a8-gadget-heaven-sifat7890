@@ -9,10 +9,13 @@ import App from './App.jsx'
 import Root from './Components/Root/Root.jsx';
 import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
 import Home from './Components/Home/Home.jsx';
-import Statistics from './Components/Statistics/Statistics.jsx';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import GadgetCarts from './Components/GadgetCarts/GadgetCarts.jsx';
 import CartDetails from './Components/CartDetails/CartDetails.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import AboutUs from './Components/AboutUs/AboutUs.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -45,13 +48,15 @@ const router = createBrowserRouter([
         loader:()=>fetch('/gadgetData.json')
       },
       {
-        path: "Statistics",
-        element: <Statistics></Statistics>,
+        path: "Dashboard",
+        element: <Dashboard></Dashboard>,
+        loader:()=>fetch('/gadgetData.json')
       },
       {
-        path: "Dashboard",
-        element: <Dashboard></Dashboard>
-      },
+        path: "AboutUs",
+        element: <AboutUs></AboutUs>,
+      
+      }
 
 
     ]
@@ -62,5 +67,24 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer 
+    
+    // position="top-center"  // Positions toast at the top-center
+    // autoClose={3000}
+    // hideProgressBar={true}
+    // style={{
+    //   top: '0%',
+      
+    // }}
+
+    position="top-center"
+    autoClose={2000} // in ms
+    hideProgressBar={false}
+    closeOnClick={true}
+    pauseOnHover={true}
+    draggable={true}
+    progress={undefined}
+
+    />
   </StrictMode>,
 )

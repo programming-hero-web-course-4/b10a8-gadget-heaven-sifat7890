@@ -1,20 +1,25 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { MdFavoriteBorder } from "react-icons/md";
 
 
 const Navbar = () => {
+    const location = useLocation()
+    const getNavbarStyle = (path) => {
+        return path == "/" || path.startsWith('/category') ? 'bg-[#9538E2] text-white' : 'bg-white text-black'
+    };
 
+    const navbarStyle = getNavbarStyle(location.pathname);
     const links = <>
 
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="Statistics">Statistics</NavLink></li>
         <li><NavLink to="Dashboard">Dashboard</NavLink></li>
+        <li><NavLink to="AboutUs">AboutUs</NavLink></li>
     </>
 
     return (
-        <div className=" bg-[#9538E2] text-white mt-5 pt-4 rounded-t-xl pb-3">
+        <div className={` ${navbarStyle}  mt-5 pt-4 rounded-t-xl pb-3`}>
             <div className='navbar w-10/12 mx-auto'>
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -47,7 +52,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end text-black gap-2">
                     <span className='bg-white rounded-full p-2'><FiShoppingCart /></span>
-                    <span className='bg-white rounded-full p-2'><MdFavoriteBorder/></span>
+                    <span className='bg-white rounded-full p-2'><MdFavoriteBorder /></span>
                 </div>
             </div>
         </div>

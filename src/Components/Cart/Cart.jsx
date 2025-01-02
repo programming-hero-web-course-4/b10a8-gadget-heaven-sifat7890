@@ -20,7 +20,7 @@ const Cart = ({ gadget }) => {
                         {product_title}
 
                     </h2>
-                    <p>Price: {price}</p>
+                    <p>Price: ${price}</p>
                     <Link to={`/cart/${product_id}`}><button className='btn  border-2 border-[#9538E2] hover:bg-[#9538E2]  hover:text-white font-bold rounded-full w-3/6'>View Details</button></Link>
 
                 </div>

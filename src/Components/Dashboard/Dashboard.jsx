@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { getStoredCartList, getStoredWishList, removeFromStoredCartList, removeFromStoredWishList } from '../Utilities/addToData';
 import CartList from '../CartList/CartList';
 import WishList from '../WishList/WishList';
@@ -55,10 +55,23 @@ const Dashboard = () => {
 
     const handleSort = sortType => {
         setSort(sortType);
-        const sortedCartList =[...cartLists].sort((a,b)=>b.price -a.price);
+        const sortedCartList = [...cartLists].sort((a, b) => b.price - a.price);
         setCartLists(sortedCartList);
 
     }
+
+    const handlePurchase = () => {
+        setCartLists([]);
+        setTotalCost(0);
+        localStorage.setItem('cart-list', JSON.stringify([]));
+        showModal()
+    };
+    const showModal = () => {
+        const modal = document.getElementById("my_modal_5");
+        if (modal) {
+            modal.showModal();
+        }
+    };
 
     return (
         <div >
@@ -76,9 +89,9 @@ const Dashboard = () => {
                 <h3 className='text-2xl font-bold'>Cart</h3>
                 <div className='flex gap-6 items-center justify-center'>
                     <p>Total cost:${totalCost}</p>
-                    <button onClick={()=>handleSort()} className='btn border-2 border-[#9538E2] 
+                    <button onClick={() => handleSort()} className='btn border-2 border-[#9538E2] 
                     text-[#9538E2] font-bold rounded-full w-36 flex'>Sort By Price <TbArrowsSort /></button>
-                    <button className='btn bg-[#9538E2] text-white font-bold rounded-full w-36'>Purchase</button>
+                    <button onClick={handlePurchase} className='btn bg-[#9538E2] text-white font-bold rounded-full w-36' disabled={cartLists.length === 0}>Purchase</button>
                 </div>
 
             </div>
@@ -96,6 +109,21 @@ const Dashboard = () => {
                 </div>
                 )}
             </div>
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box ">
+                    <div className="modal-action justify-center">
+                        <form method="dialog flex flex-col justify-center items-center align-center ">
+                            <div className='text-center flex flex-col justify-center items-center align-center space-y-3'>
+                                <img className='w-10' src="https://img.icons8.com/?size=100&id=102561&format=png&color=000000" alt="" />
+                                <p className='font-bold text-3xl'>Purchase Successful</p>
+                                <p className=' text-lg'>Thanks For Purchasing</p>
+                            </div>
+
+                            <Link to="/"><button className="btn w-full text-center mt-3">Close</button></Link>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </div>
     );
 };

@@ -68,15 +68,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
     <ToastContainer 
-    
-    // position="top-center"  // Positions toast at the top-center
-    // autoClose={3000}
-    // hideProgressBar={true}
-    // style={{
-    //   top: '0%',
-      
-    // }}
-
+   
     position="top-center"
     autoClose={2000} // in ms
     hideProgressBar={false}
